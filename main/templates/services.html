@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>request service  page</title>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylesc.css' %}">
+  
+</head>
+<body>
+    
+ <section id="product1" class="section-p1">
+         <h2>DRESSES AND THEIR PRIZES</h2>
+         <p>PICK THE TYPE OF DRESSES YOU WANT TO WASH</p>
+         <div class="pro-container">
+            {% for p in items reversed %}
+             <div class="pro">
+                <a href="products/{{p.pk}}" style="text-decoration: none;">                
+                    <img  src="{{ p.image.url }}" alt=""/>
+                 
+                    <!--<img  src="{{ p.image.url }}" alt=""/>
+                    <img  src="{{ p.image.url }}" alt=""/>-->
+                    <div class="des">
+                        <h5>category {{ p.category }}</h5>
+                       <h5>laundry name:{{ p.name }}</h5>
+                       
+                       <h5>pressing:{{ p.pressing }}</h5>
+                        <h4 class="price">price:{{ p.price }}</h4>
+                        <h5>percentage off:-{{ p.get_percentage|floatformat }}%</h5>
+                   
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        
+                          
+                           <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'card' %}">Add to cart</a></div>
+                       </div>
+                    </div>
+                </a>
+             </div>
+            {% endfor %}
+         </div>
+     </section>
+ 
+ 
+  
+
+  <!-- Template Javascript -->
+</body>
+
+</html>
+{% endblock content%}
